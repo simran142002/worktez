@@ -98,7 +98,6 @@ fastify.post("/updateTeam", (req, res) => {
   updateTeam(req, res);
 });
 
-<<<<<<< HEAD
 
 /**
  * Description
@@ -111,13 +110,11 @@ fastify.post("/updateTeam", (req, res) => {
   deleteLabel(req, res);
 });
 
-=======
 fastify.post("/addProjLink", (req, res) => {
   addProjLink(req, res);
 });
 
 
->>>>>>> 4828c9fed5054eac5ef2e8055ef668effcd7cedc
 /**
  * Description
  * @param {any} "/updateTeam"
