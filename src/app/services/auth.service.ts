@@ -22,11 +22,20 @@ import { map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { FileData } from '../Interface/FileInterface';
 
+function _window() : any {
+  return window;
+ }
+ 
+
 @Injectable({
   providedIn: 'root',
 })
 
 export class AuthService {
+  get nativeWindow() : any{
+    return _window();
+  }
+ 
   public userAppSettingObservable: Observable<UserAppSetting>;
 
   public myOrgCollectionsData: Observable<MyOrganizationData[]>

@@ -171,6 +171,8 @@ import { AddAttetendeeComponent } from './body/schedule-meet/add-attetendee/add-
 import { NotificationCardComponent } from './header/notification-center/notification-card/notification-card.component';
 import { ShowMeetDetailsComponent } from './header/show-meet-details/show-meet-details.component';
 import { PricingComponent } from './body/pricing/pricing.component';
+import { CheckoutComponent } from './body/checkout/checkout.component';
+import { MakePaymentComponent } from './body/make-payment/make-payment.component';
 
 @NgModule({
   declarations: [
@@ -308,6 +310,8 @@ import { PricingComponent } from './body/pricing/pricing.component';
     NotificationCardComponent,
     ShowMeetDetailsComponent,
     PricingComponent,
+    CheckoutComponent,
+    MakePaymentComponent,
   ],
   imports: [
     BrowserModule,

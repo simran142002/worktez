@@ -33,6 +33,7 @@ const { milestone } = require("./model/milestone/milestone");
 const { filters } = require("./model/filters/filters");
 const { requestDemo } = require("./model/requestDemo/requestDemo");
 const { meet } = require("./model/meet/meet");
+const { payment } = require("./model/payment/payment");
 
 exports.users = users;
 exports.tasks = tasks;
@@ -55,3 +56,4 @@ exports.milestone = milestone;
 exports.filters = filters;
 exports.requestDemo = requestDemo;
 exports.meet = meet;
+exports.payment = payment;
