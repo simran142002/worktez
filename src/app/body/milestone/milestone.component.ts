@@ -45,6 +45,17 @@ import { PopupHandlerService } from "src/app/services/popup-handler/popup-handle
    constructor(private functions: AngularFireFunctions, private router: Router, public startService: StartServiceService, public errorHandlerService: ErrorHandlerService, public authService: AuthService, public backendService: BackendService, public navbarHandler: NavbarHandlerService, public popupHandlerService: PopupHandlerService, public applicationSettingsService: ApplicationSettingsService, public cookieService: CookieService) { }
  
    ngOnInit(): void {
+     this.applicationSettingsService.teamData.subscribe({
+       next: (data) => {
+        console.log(data.MilestoneStatus);
+       },
+       error: (error) => {
+
+       },
+       complete: (() => {
+
+       })
+     });
      this.showLoader = true;
      this.navbarHandler.resetNavbar();
      this.navbarHandler.addToNavbar(this.componentName);

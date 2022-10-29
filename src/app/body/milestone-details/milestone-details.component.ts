@@ -69,6 +69,7 @@ export class MilestoneDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.milestoneId = this.route.snapshot.params['MilestoneId'];
     this.navbarHandler.addToNavbar(this.milestoneId);
     if (this.startService.showTeams) {
@@ -133,6 +134,7 @@ export class MilestoneDetailsComponent implements OnInit {
         this.getNumberData();
       });
   }
+
   activateAdd(){
     this.popupHandlerService.addTaskActive = true;
   this.getAllTasks();
@@ -153,6 +155,8 @@ export class MilestoneDetailsComponent implements OnInit {
               return element;
             }
           });
+          this.milestoneIdToEdit =  "";
+          this.showLoader = false;
         },
         error: (error) => {
           console.log(error);
@@ -165,6 +169,55 @@ export class MilestoneDetailsComponent implements OnInit {
       });
   }
 
+  clickOut() {
+    this.milestoneIdToEdit="";
+    this.submit();
+  }
+
+  submit() {
+    let data = [{ label: "milestoneStatus", value: this.milestoneData.MilestoneStatus }];
+     
+      this.newVal = [this.milestoneData.MilestoneStatus];
+      this.generateChanges();
+      console.log("Inputs are valid");
+      this.editStatus();
+      this.showLoader=true;
+      this.getMilestoneDetails();
+    
+  }
+
+  editStatus(){
+    this.showLoader=true;
+    const orgDomain = this.backendService.getOrganizationDomain();
+    console.log(orgDomain, this.milestoneId, this.milestoneData.MilestoneStatus, this.milestoneData.Title, this.milestoneData.Description, this.milestoneData.CreationDate,this.milestoneData.EndDate);
+    const callable = this.functions.httpsCallable('milestone/editMilestone');
+    callable({MilestoneId:this.milestoneId, OrgDomain:orgDomain,MilestoneStatus:this.milestoneData.MilestoneStatus, Title: this.milestoneData.Title, Description: this.milestoneData.Description, StartDate: this.milestoneData.CreationDate, EndDate: this.milestoneData.EndDate}).subscribe({
+      next: (data) => {
+        console.log(data);
+        console.log(this.milestoneData.MilestoneStatus)
+        this.milestoneData.MilestoneStatus=this.milestoneData.MilestoneStatus;
+          this.showLoader=true;
+          this.milestoneIdToEdit =  "";
+          this.showLoader = false;
+          console.log(this.milestoneData.MilestoneStatus)
+      },
+      error: (error) => {
+        this.errorHandlerService.showError = true;
+        this.errorHandlerService.getErrorCode(this.componentName,"InternalError","Api");
+        this.showLoader = false;
+        console.error(error);
+      },
+      complete: () => console.info('Successful')
+    });
+  }
+
+  generateChanges() {
+    if (this.prevVal[0] != this.newVal[0])
+      this.changedData = this.changedData + " milestoneStatus,";
+    if (this.changedData != "")
+      this.changedData = "Edited-" + this.changedData;
+    this.changedData = this.changedData.substring(0, this.changedData.length - 1) + "."
+  }
 
   setMilestoneWidth = function () {
     //Calculations are adjusted for UI Improvisations
@@ -179,9 +232,17 @@ export class MilestoneDetailsComponent implements OnInit {
 
   readTeamData(teamId :string){
     this.showLoader = true;
-    this.applicationSetting.getTeamDetails(teamId).subscribe(team => {
-         this.milestoneStatusLabels = team.MilestoneStatus;
-         console.log(this.milestoneStatusLabels);
+    this.applicationSetting.teamData.subscribe({
+      next: (data) => {
+       console.log(data);
+       this.milestoneStatusLabels = data['MilestoneStatusLabels'];
+      },
+      error: (error) => {
+
+      },
+      complete: (() => {
+
+      })
     });
     this.showLoader =false;
   }

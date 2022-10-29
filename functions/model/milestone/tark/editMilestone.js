@@ -30,6 +30,7 @@ exports.editMilestone = function(request, response) {
   const description = request.body.data.Description;
   const startDate = request.body.data.StartDate;
   const endDate = request.body.data.EndDate;
+  console.log(milestoneStatus, orgDomain, milestoneId, title, description, startDate, endDate);
 
   let result;
   let status = 200;
