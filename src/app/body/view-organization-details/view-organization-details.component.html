@@ -72,6 +72,17 @@
                 </div>
             </div>
         </div>
+        <div class="col">
+            <button class="btn extra" type="button" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-toggle="modal" data-target="#makeRelease" (click)="enableRelease(team)"
+                title="Release">
+                <img src="../../../assets/githubIcon.svg" alt="git" height="25" width="25">
+                <span>Create Release</span>
+                <span>
+                    {{repoLink}}
+                </span>
+            </button>
+        </div>
         <hr>
         <div class="row p-2">
             <div *ngIf="rbaService.isRbaReady && rbaService.permissions.createTeam" class="col">
@@ -150,7 +161,10 @@
 <ng-container *ngIf="showLoader">
     <app-loader></app-loader>
 </ng-container>
-
+<ng-container *ngIf="enabledRelease" id="projectModalLabel1">
+    <app-make-release (createdRelease)="createdRelease($event)">
+    </app-make-release>
+</ng-container>
 <ng-container *ngIf="editProfilePicEnabled && imageReady" id="OrgLogoModal">
     <app-edit-dp [orgDomain]="organization.OrganizationDomain"  [imageUrl]="imageUrl"  (editOrgLogoCompleted)="editOrgLogoCompleted($event)"></app-edit-dp>
 </ng-container>

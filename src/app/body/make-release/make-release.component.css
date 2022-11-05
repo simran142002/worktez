@@ -1,0 +1,22 @@
+#button{
+    background-color: var(--button-hover-bg);
+    color: var(--button-text);
+}
+
+#button:hover,
+#dropdownButton:hover, .dropdown-item:hover {
+    background-color: var(--dropdown-hover);
+    color: var(--button-text-hover); 
+}
+
+#button:focus {
+    outline:none;
+    box-shadow: none;
+}
+
+.form-control {
+    background-color: var(--secondary-bg);
+    color: var(--text);
+    font-size: 12px;
+    border: none;
+}

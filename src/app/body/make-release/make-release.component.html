@@ -1,0 +1,188 @@
+<!-- /*********************************************************** 
+* Copyright (C) 2022 
+* Worktez 
+* Author : Abhishek Mishra <am1426620@gmail.com>
+* 
+* This program is free software; you can redistribute it and/or 
+* modify it under the terms of the MIT License 
+* 
+* 
+* This program is distributed in the hope that it will be useful, 
+* but WITHOUT ANY WARRANTY; without even the implied warranty of 
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the MIT License for more details. 
+***********************************************************/ -->
+    <div class="modal fade" id="makeRelease" tabindex="-1" role="dialog" aria-labelledby="requestDemoTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content p-2">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-10">
+                            <h2>Release</h2>
+                        </div>
+                            <div class="col-md-2 col-2 text-right ">
+                                <span class="btn close">
+                                    <mat-icon fontSet="material-icons-outlined" class="align-middle close"(click)="close()" title="Close">
+                                        close
+                                    </mat-icon>
+                                </span>
+                            </div>
+                        </div>
+                   
+                    <form #form="ngForm" [formGroup]="requestDemoForm"  *ngIf="!showClose" (ngSubmit)="onSubmit()">
+                        <div class="form-row my-2">
+                            <div class="form-group col-md-6 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Tag Name <span style="color: red;">*</span></span>
+                                <input type="text" class="form-control form-control-sm" formControlName="tagName" placeholder="Enter your tag name"> 
+                                <span class="ml-2" *ngIf="personName.invalid && personName.touched" style="color: red; font-size: 10px; ">Tag Name is required</span> 
+                            </div>
+                        </div>
+                        <div class="form-row my-2">
+                            <div class="form-group col-md-6 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Bearer Token <span style="color: red;">*</span></span>
+                                <input type="text" class="form-control form-control-sm" formControlName="tagName" placeholder="Enter your bearer token"> 
+                                <span class="ml-2" *ngIf="personName.invalid && personName.touched" style="color: red; font-size: 10px; ">Bearer Token is required</span> 
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="form-group col-md-12 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Target Branch <span style="color: red;">*</span></span>
+                                <input type="text" class="form-control form-control-sm" formControlName="targetBranch" placeholder="Enter your Target Branch"> 
+                                <span class="ml-2" *ngIf="emailAddress.value=='' && emailAddress.touched" style="color: red; font-size: 10px; ">Target branch is required</span>
+                            </div>
+                            
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="form-group col-md-6 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Owner Name <span style="color: red;">*</span></span>
+                                <input type="text" class="form-control form-control-sm" formControlName="ownerName" placeholder="Enter Owner Name">
+                                <span class="ml-2" *ngIf="contactNumber.value==null && contactNumber.touched" style="color: red; font-size: 10px; ">Release Name is required</span>
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="form-group col-md-6 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Release Name <span style="color: red;">*</span></span>
+                                <input type="text" class="form-control form-control-sm" formControlName="releaseName" placeholder="Enter Release Name">
+                                <span class="ml-2" *ngIf="contactNumber.value==null && contactNumber.touched" style="color: red; font-size: 10px; ">Release Name is required</span>
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="form-group col-md-6 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Repo Name <span style="color: red;">*</span></span>
+                                <input type="text" class="form-control form-control-sm" formControlName="repoName" placeholder="Enter Release Name">
+                                <span class="ml-2" *ngIf="contactNumber.value==null && contactNumber.touched" style="color: red; font-size: 10px; ">Repo Name is required</span>
+                            </div>
+                        </div>
+                        <div class="form-row my-2">
+                            <div class="form-group col-md-8 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Release Description</span>
+                                <input type="text" class="form-control form-control-sm" formControlName="releaseDescription" placeholder="Enter the Release Description"> 
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 px-2">
+                            <span id="openEditProperties">Draft</span>
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle box" type="button" id="button" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false" style="text-align: center;">
+                                  {{response1}}
+                                </button>
+                        
+                                <div class="dropdown-menu dropdown-menu-left" id="dropdownUserCard">
+                                  <button class="dropdown-item" type="button" (click)="chooseIfDraft('true')">
+                                    True
+                                  </button>
+                                  <button class="dropdown-item" type="button" (click)="chooseIfDraft('false')">
+                                    False
+                                  </button>
+                                </div>
+                              </div>
+                              </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 px-2">
+                            <span id="openEditProperties">Pre Release</span>
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle box" type="button" id="button" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false" style="text-align: center;">
+                                  {{response2}}
+                                </button>
+                        
+                                <div class="dropdown-menu dropdown-menu-left" id="dropdownUserCard">
+                                  <button class="dropdown-item" type="button" (click)="chooseIfPreRelease('true')">
+                                    True
+                                  </button>
+                                  <button class="dropdown-item" type="button" (click)="chooseIfPreRelease('false')">
+                                    False
+                                  </button>
+                                </div>
+                              </div>
+                              </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 px-2">
+                            <span id="openEditProperties">Generate Release</span>
+                            <div class="btn-group" style="width: 50px;">
+                                <button class="btn dropdown-toggle box" type="button" id="button" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false" style="text-align: center;">
+                                  {{response}}
+                                </button>
+                        
+                                <div class="dropdown-menu dropdown-menu-left" id="dropdownUserCard">
+                                  <button class="dropdown-item" type="button" (click)="chooseIfGenerateRelease('true')">
+                                    True
+                                  </button>
+                                  <button class="dropdown-item" type="button" (click)="chooseIfGenerateRelease('false')">
+                                    False
+                                  </button>
+                                </div>
+                              </div>
+                              </div>
+                        </div>
+                        <!-- <div class="form-row my-2">
+                            <div class="col-md-6 px-2">
+                                <span id="openEditProperties">Generate Release</span>
+                                <select class="custom-select" [(ngModel)]="generateRelease"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option selected disabled value="">Choose Select</option>
+                                    <ng-container *ngFor="let item of ifDraft">
+                                        <option>{{item}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div> -->
+    
+                    <div class="form-row">
+                        <div class="form-group col-md-12 mx-1 col">
+                            <button type="submit" class="btn btn-block" id="button" [disabled]="enableLoader || requestDemoForm.invalid" aria-label="Close" >Submit</button>
+                        </div>
+                    </div>
+                    <app-loader *ngIf="enableLoader"></app-loader>
+                </form>
+                <ng-container *ngIf="showClose">
+                    <div class="row mx-5">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <mat-icon aria-hidden="false" id="SuccessIcon" style="padding-left: 5px;">check_circle_outline</mat-icon>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="row" style="font-size: medium;flex-wrap: wrap;">Release genrated Successfully!</div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 pt-2 px-4">
+                            <button class="btn" type="button" id="button" data-dismiss="modal" (click)="close()" style="margin-left: 10px;">Close</button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>

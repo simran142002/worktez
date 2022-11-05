@@ -48,6 +48,7 @@ export class ViewOrganizationDetailsComponent implements OnInit {
   profilePicFile: FileData;
   imageReady: boolean = false
   isAdmin:boolean = false;
+  enabledRelease: boolean = false;
 
   constructor(public teamService: TeamServiceService, public startService: StartServiceService, public rbaService: RBAService, 
     public backendService: BackendService, public authService: AuthService, 
@@ -67,6 +68,10 @@ export class ViewOrganizationDetailsComponent implements OnInit {
         }
       });
     }
+  }
+
+  createdRelease(data: {completed: boolean}){
+    this.enabledRelease = false;
   }
 
   getOrganizationDetails() {
@@ -146,6 +151,10 @@ export class ViewOrganizationDetailsComponent implements OnInit {
 
   editProfilePic() {
     this.editProfilePicEnabled = true;
+  }
+
+  enableRelease(team){
+    this.enabledRelease = true;
   }
 
   editOrgLogoCompleted(data: {completed: boolean, imageUrl: string}){
