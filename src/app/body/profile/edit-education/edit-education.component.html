@@ -16,10 +16,10 @@
         <div class="modal-content p-2">
                 <ng-container *ngIf="educationModalMode == 'add'">
                     <div class="row px-3 pb-0 pt-3">
-                        <div class="col-md-10 col-10">
-                            <span>Add Your Education</span>
+                        <div class="col-md-10 col-10 pt-1">
+                            <h2>Add Your Education</h2>
                         </div>
-                        <div class="col-md-1 col-2 text-right ">
+                        <div class="col-md-1 col-2 text-right">
                             <span class="btn">
                                 <mat-icon fontSet="material-icons-outlined" data-dismiss="modal"class="align-middle "(click)="editEducationDone()" title="Close">
                                     close
@@ -30,8 +30,8 @@
                 </ng-container>
                 <ng-container *ngIf="educationModalMode == 'edit'">
                     <div class="row px-3 pb-0 pt-3">
-                        <div class="col-md-10 col-10">
-                            <span>Edit Education</span>
+                        <div class="col-md-10 col-10 pt-1">
+                            <h2>Edit Education</h2>
                         </div>
                         <div class="col-md-1 col-2 text-right ">
                             <span class="btn">
@@ -46,22 +46,22 @@
                 <form *ngIf="!enableLoader">
                     <div class="form-group mb-4">
                         <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">College/School Name</span>
-                        <input type="text" [(ngModel)]="instituteName" [ngModelOptions]="{standalone: true}" class="form-control" id="recipient-name" placeholder="Enter your College or School Name">
+                        <input type="text" [(ngModel)]="instituteName" [ngModelOptions]="{standalone: true}" class="form-control" id="recipient-name" placeholder="Enter your College or School Name" autocomplete="off">
                     </div>
 
                     <div class="form-group my-4">
                         <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Degree Name</span>
-                        <input type="text" [(ngModel)]="degree" [ngModelOptions]="{standalone: true}" class="form-control" id="recipient-name" placeholder="Enter your Degree Name">
+                        <input type="text" [(ngModel)]="degree" [ngModelOptions]="{standalone: true}" class="form-control" id="recipient-name" placeholder="Enter your Degree Name" autocomplete="off">
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-6 col ml-auto">
                         <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Start Date</span>
-                            <input class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}" min="{{todayDate}}" placeholder="Select The Start Date ">
+                            <input class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}"  placeholder="Select The Start Date ">
                         </div>
                         <div class="col-md-6 col ml-auto">
                         <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">End Date</span>
-                            <input class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" min="{{todayDate}}" placeholder="Select The End Date ">
+                            <input class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" min="{{startDate}}" placeholder="Select The End Date ">
                         </div>
                     </div>
 

@@ -15,26 +15,28 @@
 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content card">
-    <div class="modal-header">
-      <h2 class="modal-title font-weight-bold" id="exampleModalLongTitle">
+    <div class="modal-header pb-0">
+      <h2 class="modal-title font-weight-bold pt-1" id="exampleModalLongTitle">
         Add a Task
       </h2>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true" class="material-icons">&times;</span>
-      </button>
+      <span class="btn" data-dismiss="modal">
+        <mat-icon  fontSet="material-icons-outlined" class="align-middle" title="Close">
+            close
+        </mat-icon>
+    </span>
     </div>
     <div class="modal-body" style="max-height: 500px;overflow-y: auto;">
       <form>
         <div *ngIf="popupHandlerService.addTaskActive">
           <div class="m-1 border-bottom">
             <div class="row p-1">
-                <div class="col-2">
+                <div class="col-3">
                   TaskId
                 </div>
                 <div class="col-5">
                     Title
                 </div>
-                <div class="col-5">
+                <div class="col-4">
                   Assignee
                 </div>
             </div>
@@ -45,13 +47,13 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <ng-container *ngFor="let task of allTasks">
             <div class="m-1 border-bottom task" (click)="addTask(task)" style="cursor: pointer;">
               <div class="row p-1">
-                  <div class="col-2">
+                  <div class="col-3">
                     {{task.Id}}
                   </div>
                   <div class="col-5">
                       {{task.Title}}
                   </div>
-                  <div class="col-5">
+                  <div class="col-4">
                     <app-suggestion-bucket [email]="task.Assignee"  [showEmail] = "false"></app-suggestion-bucket>
                   </div>
               </div>

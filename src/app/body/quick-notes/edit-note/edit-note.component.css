@@ -18,22 +18,26 @@
   background-color: var(--secondary-bg);
 }
 
+.card-header{
+  background-color: transparent;
+}
+
 input {
-  background-color: var(--primary-bg);
+  background-color: transparent;
   border: none;
   color: var(--text);
 }
 
 textarea,
 textarea:focus {
-    background-color: var(--primary-bg);
+    background-color: transparent;
     border: none;
     color: var(--text);
 }
 
 input:hover,
 input:focus {
-  background-color: var(--primary-bg);
+  background-color: transparent;
   color: var(--text);
 }
 
@@ -57,4 +61,14 @@ input:focus {
 .saveButton{
   background-color: var(--primary-color);
   color: white;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus {
+  outline:0px !important;
+  box-shadow: none !important;
 }

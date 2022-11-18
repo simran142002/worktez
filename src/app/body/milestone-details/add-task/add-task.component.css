@@ -15,23 +15,44 @@
     background: var(--secondary-bg);
     color: var(--text);
     border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-radius: 10px;
     height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color); 
+    border-radius: 10px;
 }
 
 .task:hover {
     background: var(--primary-bg);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 }
+
 .close {
     color: var(--text);
 }
+
 .close:hover{
     cursor: pointer;
 }
 
-
 #SuccessIcon{
     color: var(--secondary-color);
     font-size: 55px;
+}
+
+.btn {
+    color: var(--text);
+}
+
+.btn:hover {
+    background-color: var(--dropdown-hover);
+    color: var(--button-text-hover);
 }
