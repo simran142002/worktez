@@ -57,6 +57,10 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  releases() {
+    this.router.navigate(['/Releases']);
+  }
+
   startNewSprint() {
     this.popupHandlerService.createNewSprintEnabled = true;
   }

@@ -1,0 +1,61 @@
+<!-- /***********************************************************
+ * Copyright (C) 2022
+ * Worktez
+ * Author : Sanjay Krishna <sanjaykrishna1203@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the MIT License
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the MIT License for more details.
+ ***********************************************************/ -->
+ <div class="card p-3" (click)="getReleaseDetails()">
+    <span class="heading py-2">
+      <!-- <span class="headId px-2">
+        {{milestone.MilestoneId}}
+      </span>{{milestone.Title}} -->
+    </span>
+    <div class="row py-2">
+      <div class="col">
+          <mat-icon fontSet="material-icons-outlined" class="align-middle mr-2">
+            toc
+          </mat-icon>
+          <!-- <span class="align-middle"> {{milestone.Description}}</span> -->
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col-md-3 col-4">
+        <span class="teamId">
+          <mat-icon fontSet="material-icons-outlined" class="align-middle mr-2">
+            groups_3
+          </mat-icon><span class="align-middle "></span>
+        </span>
+      </div>
+      <div class="col-md-9 col-8">
+        <span class="teamId">
+          Status:<span></span>
+        </span>
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col"id="dateAlign">
+        <span type="button" class="btn align-bottom p-0 m-0" id="StartDate">
+            <mat-icon fontSet="material-icons-outlined" class="align-middle">
+              date_range
+            </mat-icon>
+            Start Date: <span id="sprintStartDate"></span> 
+        </span>
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col"id="dateAlign">
+        <span type="button" class="btn align-bottom p-0 m-0" id="EndDate">
+          <mat-icon fontSet="material-icons-outlined" class="align-middle">date_range
+          </mat-icon>
+          End Date: <span id="sprintStartDate"></span> 
+      </span>
+      </div>
+    </div>
+  </div>

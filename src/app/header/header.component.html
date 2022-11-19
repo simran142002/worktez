@@ -77,6 +77,15 @@
                                 </a>
                             </li>
                         </ng-container>
+                        <ng-container>
+                            <li class="nav-item px-1">
+                                <a class="nav-link" id="navbarDropdownBoards" role="button" (click)="releases()">
+                                    <mat-icon fontSet="material-icons-outlined" class="align-middle">
+                                        new_releases
+                                    </mat-icon> Releases
+                                </a>
+                            </li>
+                        </ng-container>
                         <li class="nav-item dropdown" *ngIf="startService.teamIdExists">
                             <a class="nav-link" id="navbarDropdownBoards" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">

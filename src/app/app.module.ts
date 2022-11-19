@@ -184,6 +184,9 @@ import { AllNotificationCardComponent } from './header/notification-center/all-n
 import { AddWatchersComponent } from './body/task-details/add-watchers/add-watchers.component';
 import { StandardSubscriptionComponent } from './body/standard-subscription/standard-subscription.component';
 import { MakeReleaseComponent } from './body/make-release/make-release.component';
+import { ReleaseComponent } from './body/release/release.component';
+import { ReleaseCardComponent } from './body/release/release-card/release-card.component';
+import { AddReleaseComponent } from './body/release/add-release/add-release.component';
 
 @NgModule({
   declarations: [
@@ -335,6 +338,9 @@ import { MakeReleaseComponent } from './body/make-release/make-release.component
     AddWatchersComponent,
     PaymentStatusComponent,
     MakeReleaseComponent,
+    ReleaseComponent,
+    ReleaseCardComponent,
+    AddReleaseComponent,
   ],
   imports: [
     BrowserModule,

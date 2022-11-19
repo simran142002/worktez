@@ -56,6 +56,7 @@ import { AllNotificationComponent } from './header/notification-center/all-notif
 import { CurrenPlanComponent } from './body/curren-plan/curren-plan.component';
 import { PaymentStatusComponent } from './body/payment-status/payment-status.component';
 import { StandardSubscriptionComponent } from './body/standard-subscription/standard-subscription.component';
+import { ReleaseComponent } from './body/release/release.component';
 
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['MyDashboard']);
 
@@ -70,6 +71,7 @@ const routes: Routes = [
   { path: 'MyDashboard', component: MyDashBoardComponent, canActivate: [AngularFireAuthGuard] },
   { path: 'techverse', component: SocialPageComponent, title: "Techverse"},
   { path: 'FilterPage', component: FilterPageComponent},
+  { path: 'Releases', component:ReleaseComponent},
   { path: 'CreateNewOrganization', component: CreateNewOrganizationComponent, canActivate: [AngularFireAuthGuard] },
   { path: 'CreateNewTeam', component: CreateNewTeamComponent, canActivate: [AngularFireAuthGuard] },
   { path: 'TeamDetails/:teamId', component: TeamDetailsComponent, canActivate: [AngularFireAuthGuard] },
