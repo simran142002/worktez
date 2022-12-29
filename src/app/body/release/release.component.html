@@ -1,17 +1,17 @@
-<!-- /*********************************************************** 
-* Copyright (C) 2022 
-* Worktez 
-* Author : Sanjay Krishna <sanjaykrishna1203@gmail.com>
-*    
-* This program is free software; you can redistribute it and/or 
-* modify it under the terms of the MIT License 
-* 
-* This program is distributed in the hope that it will be useful, 
-* but WITHOUT ANY WARRANTY; without even the implied warranty of 
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-* See the MIT License for more details. 
-***********************************************************/ -->
-<ng-container>
+<!-- /***********************************************************
+ * Copyright (C) 2022
+ * Worktez
+ * Author : Simran Nigam <nigamsimran14@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the MIT License
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the MIT License for more details.
+ ***********************************************************/ -->
+<ng-container *ngIf="releaseDataReady; else loader">
     <div class="btn-group smallButton">
       <button class="btn px-4 dropdown-toggle m-2" type="button" id="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{startService.selectedTeamId}}&nbsp;&nbsp;</button>
       <div class="dropdown-menu dropdown-menu-left" id="dropdownUserCard">
@@ -30,10 +30,10 @@
           <app-loader></app-loader>
         </ng-template>  
       </div>
-        <div class="row pt-2 px-4" *ngIf="releaseData.length > 0">
-          <ng-container *ngFor="let milestone of milestoneData">
-            <div class="col-md-4 p-3" *ngIf = "milestone.MilestoneStatus !== 'Completed'">
-              <app-milestone-card [milestone]="milestone"></app-milestone-card>
+        <div class="row pt-2 px-4" *ngIf="releaseData.length>0">
+          <ng-container *ngFor="let release of releaseData">
+            <div class="col-md-4 p-3">
+              <app-release-card [release]="release"></app-release-card>
             </div>
           </ng-container>
         </div>
@@ -42,16 +42,8 @@
         <!-- <div style="font-family: 'Plus Jakarta Sans', sans-serif;">
           <h1 style="font-weight: lighter;">Completed Milestones</h1>
         </div> -->
-    
-        <div class="row pt-2 px-4" *ngIf="releaseData.length > 0">
-          <ng-container *ngFor="let milestone of milestoneData">
-            <div class="col-md-4 p-3" *ngIf = "milestone.MilestoneStatus == 'Completed'">
-              <app-milestone-card [milestone]="milestone"></app-milestone-card>
-            </div>
-          </ng-container>
-        </div>
     </div>
-    <app-add-release *ngIf="addReleaseActive" [teamIds]="teamIds" [teamId]="teamId" (getMilestones)="getMilestoneData()"></app-add-release>
+    <app-add-release *ngIf="addReleaseActive" [teamIds]="teamIds" [teamId]="teamId" (getReleases)="getReleaseData()"></app-add-release>
     </ng-container>
     <ng-template #loader>
       <app-loader></app-loader>

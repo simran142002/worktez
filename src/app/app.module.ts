@@ -187,6 +187,8 @@ import { MakeReleaseComponent } from './body/make-release/make-release.component
 import { ReleaseComponent } from './body/release/release.component';
 import { ReleaseCardComponent } from './body/release/release-card/release-card.component';
 import { AddReleaseComponent } from './body/release/add-release/add-release.component';
+import { ReleaseDetailsComponent } from './body/release-details/release-details.component';
+import { EditReleaseComponent } from './body/release-details/edit-release/edit-release.component';
 
 @NgModule({
   declarations: [
@@ -341,6 +343,8 @@ import { AddReleaseComponent } from './body/release/add-release/add-release.comp
     ReleaseComponent,
     ReleaseCardComponent,
     AddReleaseComponent,
+    ReleaseDetailsComponent,
+    EditReleaseComponent,
   ],
   imports: [
     BrowserModule,

@@ -57,6 +57,7 @@ import { CurrenPlanComponent } from './body/curren-plan/curren-plan.component';
 import { PaymentStatusComponent } from './body/payment-status/payment-status.component';
 import { StandardSubscriptionComponent } from './body/standard-subscription/standard-subscription.component';
 import { ReleaseComponent } from './body/release/release.component';
+import { ReleaseDetailsComponent } from './body/release-details/release-details.component';
 
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['MyDashboard']);
 
@@ -101,6 +102,7 @@ const routes: Routes = [
   { path: 'KanbanBoard', component: KanbanBoardComponent, canActivate: [AngularFireAuthGuard]},
   { path: 'Milestones', component:MilestoneComponent, canActivate: [AngularFireAuthGuard]},
   { path: 'MilestoneDetails/:MilestoneId', component:MilestoneDetailsComponent, canActivate:[AngularFireAuthGuard]},
+  { path: 'ReleaseDetails/:ReleaseId', component:ReleaseDetailsComponent, canActivate:[AngularFireAuthGuard]},
   { path: 'Pricing', component:PricingComponent, title: "Pricing" },
   { path: 'PaymentStatus/:orderId/:paymentId/:signature/:subscriptionId', component:PaymentStatusComponent, canActivate:[AngularFireAuthGuard] },
   { path: 'Standard', component:StandardSubscriptionComponent},

@@ -41,23 +41,11 @@
                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">TeamId</span>
                <select class="form-control form-control-sm" [(ngModel)]="teamId"
                  [ngModelOptions]="{standalone: true}">
-                 <option [ngValue]="null" [disabled]="true">Select Team ID</option>
+                 <option [ngValue]="teamId" [disabled]="true">{{ teamId }}</option>
                  <ng-container *ngFor='let id of teamIds'>
                    <option>{{ id }}</option>
                  </ng-container>
                </select>
-             </div>
-           </div>
-           <div class="form-row my-4">
-             <div class="form-group col-md-12 col">
-                 <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Milestone Status</span>
-                 <select class="form-control form-control-sm" [(ngModel)]="milestoneStatus"
-                     [ngModelOptions]="{standalone: true}">
-                     <option [ngValue]="null" [disabled]="true">Milestone Status</option>
-                     <ng-container *ngFor='let label of applicationSetting.milestoneStatus'>
-                         <option>{{ label }}</option>
-                     </ng-container>
-                 </select>
              </div>
            </div>
            <div class="form-row my-4 mb-2">
@@ -65,35 +53,77 @@
                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Description</span>
                <textarea required type="text" [(ngModel)]="description" [ngModelOptions]="{ standalone: true }"
                  class="form-control form-control-sm" id="recipient-name"
-                 placeholder="Enter the Description of the Milestone"></textarea>
+                 placeholder="Enter Release Description"></textarea>
              </div>
            </div>
-           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+           <div class="form-row mb-2">
+            <div class="form-group col-md-6 col">
+              <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Target Branch</span>
+              <input type="text" [(ngModel)]="targetBranch" [ngModelOptions]="{ standalone: true }"
+                class="form-control form-control-sm" id="recipient-name" placeholder="Enter target branch" required autocomplete="off"/>
             </div>
+            <div class="form-group col-md-6 col">
+              <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Owner Name</span>
+              <input type="text" [(ngModel)]="ownerName" [ngModelOptions]="{ standalone: true }"
+                class="form-control form-control-sm" id="recipient-name" placeholder="Enter Owner Name" required autocomplete="off"/>
           </div>
-           <div class="form-row my-2">
-             <div class="form-group col-md-6 col">
-               <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Start Date</span>
-               <input required class="form-control form-control-sm" type="text" onfocus="(this.type='date')"
-                 onblur="(this.type='text')" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}"
-                 min="{{minDate}}" placeholder="Select The Start Date ">
-             </div>
-             <div class="form-group col-md-6 col ml-auto">
-               <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">End Date</span>
-               <input required class="form-control form-control-sm" type="text" onfocus="(this.type='date')"
-                 onblur="(this.type='text')" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}"
-                 min="{{startDate}}" placeholder="Select The End Date ">
-             </div>
-           </div>
+        </div>
+      <div class="row">
+        <div class="col">
+          <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Generate Release</span>
+          <select class="form-control form-control-sm" [(ngModel)]="generateRelease" [ngModelOptions]="{standalone: true}">
+              <option [ngValue]="generateRelease" [disabled]="true">{{generateRelease}} </option>
+              <ng-container *ngFor='let label of choose'>
+                <option>{{ label }}</option>
+            </ng-container>
+          </select>
+      </div>
+      <div class="col">
+        <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Pre Release</span>
+        <select class="form-control form-control-sm" [(ngModel)]="preRelease" [ngModelOptions]="{standalone: true}">
+            <option [ngValue]="preRelease" [disabled]="true">{{preRelease}}</option>
+            <ng-container *ngFor='let label of choose'>
+              <option>{{ label }}</option>
+          </ng-container>
+        </select>
+    </div>
+    <div class="col">
+      <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Draft</span>
+      <select class="form-control form-control-sm" [(ngModel)]="ifDraft" [ngModelOptions]="{standalone: true}">
+          <option [ngValue]="ifDraft" [disabled]="true">{{ifDraft}}</option>
+          <ng-container *ngFor='let label of choose'>
+              <option>{{ label }}</option>
+          </ng-container>
+      </select>
+  </div>
+      </div>
+      <div class="form-row mb-2">
+        <div class="form-group col-md-6 col">
+          <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Release Name</span>
+          <input type="text" [(ngModel)]="releaseName" [ngModelOptions]="{ standalone: true }"
+            class="form-control form-control-sm" id="recipient-name" placeholder="Enter Release Name" required autocomplete="off"/>
+        </div>
+        <div class="form-group col-md-6 col">
+          <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Repo Name</span>
+          <input type="text" [(ngModel)]="repoName" [ngModelOptions]="{ standalone: true }"
+            class="form-control form-control-sm" id="recipient-name" placeholder="Enter Repo Name" required autocomplete="off"/>
+        </div>
+    </div>
+        <div class="form-row my-2">
+          <div class="form-group col-md-6 col">
+            <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Tag Name</span>
+            <input type="text" [(ngModel)]="tagName" [ngModelOptions]="{ standalone: true }"
+              class="form-control form-control-sm" id="recipient-name" placeholder="Enter Tag Name" required autocomplete="off"/>
+          </div>
+          <div class="form-group col-md-6 col">
+            <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Release Date</span>
+            <input required class="form-control form-control-sm" type="text" onfocus="(this.type='date')"
+              onblur="(this.type='text')" [(ngModel)]="releaseDate" [ngModelOptions]="{standalone: true}"
+              min="{{minDate}}" placeholder="Select The Start Date ">
+          </div>
+      </div>
            <div class="modal-footer">
-             <button type="submit" class="btn btn-lg btn-block" id="button" [disabled]="showLoader" aria-label="Close" (click)="validateRelease()">Create New Milestone</button>
+             <button type="submit" class="btn btn-lg btn-block" id="button" [disabled]="showLoader" aria-label="Close" (click)="validateRelease()">Create New Release</button>
            </div>
        </form>
        <div *ngIf="!popupHandlerService.addReleaseActive">

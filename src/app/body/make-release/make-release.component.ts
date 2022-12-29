@@ -1,3 +1,17 @@
+/***********************************************************
+ * Copyright (C) 2022
+ * Worktez
+ * Author : Simran Nigam <nigamsimran14@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the MIT License
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the MIT License for more details.
+ ***********************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -15,12 +29,12 @@ export class MakeReleaseComponent implements OnInit {
   enableLoader:boolean = false;
   gitData: GitData[] = [];
   preRelease: string=null;
-  generateRelease: string=null;
+  generateRelease: boolean=null;
   draft: string=null;
-  ifDraft: string[] = ["true", "false"]
+  ifDraft: string[] = ['true', 'false'];
   response: string;
   response1: string;
-  response2: string;
+  response2: string='pre release';
   dataFetched: boolean = false;
 
   requestReleaseForm= new FormGroup({
@@ -43,23 +57,25 @@ export class MakeReleaseComponent implements OnInit {
   constructor(private functions: AngularFireFunctions, private httpService: HttpServiceService) { }
 
   ngOnInit(): void {
+    console.log(this.response2);
+    console.log(this.ifDraft);
   }
 
-  submit() {
-    this.httpService.createGithubRelease(this.bearerToken, this.releaseName, this.tagName, this.targetBranch, this.releaseDescription, this.response, this.response1, this.response2,this.ownerName, this.repoName).pipe(map(data => {
-      const gitData = data as GitData[];
-      return gitData;
-    })).subscribe({
-      next: (data) => {
-        this.gitData = data;
-        this.dataFetched = true;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => console.info('Successfull')
-    });
-  }
+  // submit() {
+  //   this.httpService.createGithubRelease(this.bearerToken, this.releaseName, this.tagName, this.targetBranch, this.releaseDescription, this.response, this.response1, this.response2,this.ownerName, this.repoName).pipe(map(data => {
+  //     const gitData = data as GitData[];
+  //     return gitData;
+  //   })).subscribe({
+  //     next: (data) => {
+  //       this.gitData = data;
+  //       this.dataFetched = true;
+  //     },
+  //     error: (error) => {
+  //       console.error(error);
+  //     },
+  //     complete: () => console.info('Successfull')
+  //   });
+  // }
 
   added() {
 

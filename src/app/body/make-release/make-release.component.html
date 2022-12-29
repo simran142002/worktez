@@ -1,17 +1,16 @@
-<!-- /*********************************************************** 
-* Copyright (C) 2022 
-* Worktez 
-* Author : Abhishek Mishra <am1426620@gmail.com>
-* 
-* This program is free software; you can redistribute it and/or 
-* modify it under the terms of the MIT License 
-* 
-* 
-* This program is distributed in the hope that it will be useful, 
-* but WITHOUT ANY WARRANTY; without even the implied warranty of 
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-* See the MIT License for more details. 
-***********************************************************/ -->
+<!-- /***********************************************************
+ * Copyright (C) 2022
+ * Worktez
+ * Author : Simran Nigam <nigamsimran14@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the MIT License
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the MIT License for more details.
+ ***********************************************************/ -->-->
     <div class="modal fade" id="makeRelease" tabindex="-1" role="dialog" aria-labelledby="requestDemoTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content p-2">
@@ -101,13 +100,13 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 px-2">
-                            <span id="openEditProperties">Pre Release</span>
+                            <div class="row">
+                                <span id="openEditProperties">Pre Release</span>
+                            </div>
                             <div class="btn-group">
                                 <button class="btn dropdown-toggle box" type="button" id="button" data-toggle="dropdown" aria-haspopup="true"
                                   aria-expanded="false" style="text-align: center;">
-                                  {{response2}}
                                 </button>
-                        
                                 <div class="dropdown-menu dropdown-menu-left" id="dropdownUserCard">
                                   <button class="dropdown-item" type="button" (click)="chooseIfPreRelease('true')">
                                     True
@@ -120,7 +119,16 @@
                               </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-6 px-2">
+                            <div class="col-md-4 col-4 ml-auto">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem;" id="label">Generate Release</span>
+                                <select class="form-control form-control-sm" [(ngModel)]="generateRelease" [ngModelOptions]="{standalone: true}">
+                                    <option [ngValue]="generateRelease" [disabled]="true">Select Difficulty</option>
+                                    <ng-container *ngFor="let label of ifDraft">
+                                        <option>{{ label }}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                            <!-- <div class="col-md-6 px-2">
                             <span id="openEditProperties">Generate Release</span>
                             <div class="btn-group" style="width: 50px;">
                                 <button class="btn dropdown-toggle box" type="button" id="button" data-toggle="dropdown" aria-haspopup="true"
@@ -137,7 +145,7 @@
                                   </button>
                                 </div>
                               </div>
-                              </div>
+                              </div> -->
                         </div>
                         <!-- <div class="form-row my-2">
                             <div class="col-md-6 px-2">

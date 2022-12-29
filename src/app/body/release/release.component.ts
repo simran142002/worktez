@@ -1,6 +1,21 @@
+/***********************************************************
+ * Copyright (C) 2022
+ * Worktez
+ * Author : Simran Nigam <nigamsimran14@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the MIT License
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the MIT License for more details.
+ ***********************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { CookieService } from 'ngx-cookie-service';
+import { map } from "rxjs";
 import { ApplicationSettingsService } from 'src/app/services/applicationSettings/application-settings.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { BackendService } from 'src/app/services/backend/backend.service';
@@ -36,6 +51,7 @@ export class ReleaseComponent implements OnInit {
       this.appkey = this.authService.getAppKey();
       this.backendService.getOrgDetails(this.appkey);
       this.teamIds = this.backendService.getOrganizationTeamIds();
+      this.getReleaseData();
       this.teamId = this.authService.getTeamId();
     } else {
       this.startService.userDataStateObservable.subscribe((data) => {
@@ -44,6 +60,7 @@ export class ReleaseComponent implements OnInit {
           this.backendService.getOrgDetails(this.appkey).subscribe((data) => {
             this.teamIds = this.backendService.getOrganizationTeamIds();
           });
+          this.getReleaseData();
           this.teamId = this.authService.getTeamId();
         }
       })
@@ -79,7 +96,29 @@ export class ReleaseComponent implements OnInit {
   }
 
   getReleaseData() {
-
+    this.showLoader = true;
+    const orgDomain = this.backendService.getOrganizationDomain();
+    this.teamIds = this.backendService.getOrganizationTeamIds();
+    const callable = this.functions.httpsCallable("makeRelease/getAllReleases");
+    callable({OrgDomain: orgDomain, TeamId: this.startService.selectedTeamId}).pipe(
+      map( actions => {
+        return actions.data as CreateReleaseData[];
+      })).subscribe({
+        next: (data) => {
+          if(data){
+            console.log(data);
+            this.releaseData = data;
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => {
+          console.info("Releases fetched successfully");
+          this.showLoader = true;
+          this.releaseDataReady = true;
+        }
+      })
   }
 
   getReleaseDetails(releaseId: number){
