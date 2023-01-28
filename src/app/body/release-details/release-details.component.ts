@@ -45,6 +45,7 @@ import { map } from 'rxjs';
    releaseDate: string;
    deleteReleaseEnabled: boolean = false;
    teamId: string;
+   releaseDesc: HTMLElement;
 
    constructor(public navbarHandler: NavbarHandlerService ,public backendService: BackendService, private githubService: GithubServiceService, private route: ActivatedRoute, private location: Location, public teamService: TeamServiceService, public errorHandlerService: ErrorHandlerService, public startService: StartServiceService) { }
 
@@ -98,6 +99,16 @@ import { map } from 'rxjs';
     })).subscribe({
       next: (data) => {
           this.releaseData = data;
+          console.log(this.releaseData.body);
+          const parser = new DOMParser();
+          this.githubService.markdownGithubDoc(bearerToken, this.releaseData.body).then((data)=>{
+           data.text().then((datas)=> {
+            this.releaseDesc = parser.parseFromString(datas, "text/html").body;
+            console.log(datas);
+            console.log(this.releaseDesc);
+            });
+          });
+
           this.releaseDataReady = true;
           this.showLoader = false;
       },
