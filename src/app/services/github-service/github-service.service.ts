@@ -117,7 +117,6 @@ export class GithubServiceService {
   }
 
   markdownGithubDoc(bearerToken: string, body: string){
-    console.log("check");
     const url = environment.githubApiUrl +"/markdown/raw";
     const headers = {
         'Authorization': 'Bearer'+bearerToken,
@@ -132,8 +131,6 @@ export class GithubServiceService {
       body:  body.toString(),
     })
     return reply;
-    // return this.httpClient.post(url, body.toString(), httpOptions);
-
   }
 
   createGithubRelease(bearerToken: string,releaseName: string, tagName: string, targetBranch: string, releaseDescription: string, response: boolean, response1: boolean, response2: boolean){
