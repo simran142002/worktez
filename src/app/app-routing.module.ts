@@ -68,6 +68,7 @@ import { AgileFunctionalitiesComponent } from './body/blogs/agile-functionalitie
 import { DevOpsComponent } from './body/blogs/dev-ops/dev-ops.component';
 import { MetaVerseComponent } from './body/blogs/meta-verse/meta-verse.component';
 import { KanbanBoardBlogComponent } from './body/blogs/kanban-board-blog/kanban-board-blog.component';
+import { RoadmapComponent } from './body/roadmap/roadmap.component';
 
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['MyDashboard']);
 
@@ -111,6 +112,7 @@ const routes: Routes = [
   { path: 'releasenotes', component: ReleaseNotesComponent },
   { path: 'KanbanBoard', component: KanbanBoardComponent, canActivate: [AngularFireAuthGuard]},
   { path: 'Milestones', component:MilestoneComponent, canActivate: [AngularFireAuthGuard]},
+  { path: 'Roadmap', component:RoadmapComponent, canActivate: [AngularFireAuthGuard]},
   { path: 'ReleaseDetails/:ReleaseId', component:ReleaseDetailsComponent, canActivate:[AngularFireAuthGuard]},
   { path: 'MilestoneDetails/:MilestoneId', component:MilestoneDetailsComponent, canActivate:[AngularFireAuthGuard]},
   { path: 'Pricing', component:PricingComponent, title: "Pricing" },

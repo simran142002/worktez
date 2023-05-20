@@ -109,6 +109,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/Milestones'])
   }
 
+  roadmap(){
+    this.router.navigate(['/Roadmap'])
+  }
+
 }
 
 
